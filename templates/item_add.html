@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block page_header %}Add Item{% endblock %}
+{% block main %}
+
+{% if not app_id or not app %}
+<div class="alert alert-danger">
+    <ul>
+        <li>Application [id={{ app_id }}] is not found.</li>
+    </ul>
+</div>
+{% else %}
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for k, v in errors.items() %}
+        <li>{{ v }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form id="form" class="form-horizontal" action="/item/add/{{ app.id }}" method="post">
+    <input id="on" name="on" value="0" type="hidden" />
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">Name</label>
+        <div class="col-sm-9">
+            <input type="text" id="form-field-1" name="name" class="col-xs-10 col-sm-5" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">Description</label>
+        <div class="col-sm-9">
+            <textarea class="form-control" id="form-field-2" name="description" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">On</label>
+        <label>
+            &nbsp;
+            <input id="checkbox" name="checkbox" class="ace ace-switch ace-switch-4" type="checkbox" />
+            <span class="lbl"></span>
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">Threshold</label>
+        <div class="col-sm-9">
+            <input type="text" id="form-field-3" name="threshold" value="0" class="col-xs-10 col-sm-5" />
+        </div>
+    </div>
+
+    <div class="col-md-offset-3 col-md-9">
+        <button class="btn btn-info" type="submit">
+            <i class="ace-icon fa fa-check bigger-110"></i>Submit
+        </button>
+        &nbsp; &nbsp; &nbsp;
+        <button class="btn" type="reset">
+            <i class="ace-icon fa fa-undo bigger-110"></i>Reset
+        </button>
+    </div>
+</form>
+<script>
+    $("#checkbox").click(function() {
+        if($("#checkbox:checkbox:checked").length == 1) {
+            $("#on").val("1");
+        } else {
+            $("#on").val("0");
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}

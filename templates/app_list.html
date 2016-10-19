@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block page_header %}Application List{% endblock %}
+{% block main %}
+<div>
+    <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+        <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr role="row">
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Create Date</th>
+                    <th>Update Date</th>
+                    <th>Operate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in apps %}
+                <tr role="row" class="odd">
+                    <td>{{ app.id }}</td>
+                    <td>{{ app.name }}</td>
+                    <td>{{ app.create_date }}</td>
+                    <td>{{ app.update_date }}</td>
+                    <td>
+                        <a href="/item/list/{{ app.id }}"><span class="label label-sm label-success">Items</span></a>
+                        <a href="/instance/list/{{ app.id }}"><span class="label label-sm label-warning">Instances</span></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="dataTables_info" id="dynamic-table_info">
+                    <a href="/app/add" class="btn btn-info">
+                        Add Application
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

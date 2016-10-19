@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>ESwtich Console</title>
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/static/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <!-- ace styles -->
+        <link rel="stylesheet" href="/static/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+        <!-- basic scripts -->
+        <script src="/static/js/jquery-2.1.4.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+    </head>
+
+    <body class="no-skin">
+        <div id="navbar" class="navbar navbar-default ace-save-state">
+            <div class="navbar-container ace-save-state" id="navbar-container">
+                <div class="navbar-header pull-left">
+                    <a href="index.html" class="navbar-brand">
+                        <small>
+                            <i class="fa fa-leaf"></i>
+                            ESwitch Console
+                        </small>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-container ace-save-state" id="main-container">
+            <div id="sidebar" class="sidebar responsive ace-save-state">
+                <ul class="nav nav-list">
+                    <li class="active">
+                        <a href="/">
+                            <i class="menu-icon fa fa-tachometer"></i>
+                            <span class="menu-text"> Dashboard </span>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="/app/list" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text">
+                                Application List
+                            </span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main-content">
+                <div class="main-content-inner">
+                    <div class="page-content">
+                        <div class="page-header">
+                            <h1>{% block page_header %}ESwitch Console{% endblock %}</h1>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- PAGE CONTENT BEGINS -->
+                                {% block main %}{% endblock %}
+                                <!-- PAGE CONTENT ENDS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-inner">
+                <div class="footer-content">
+                    <span class="bigger-120">
+                        <span class="blue bolder">ESwitch Console</span>
+                         &copy; 2016
+                    </span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

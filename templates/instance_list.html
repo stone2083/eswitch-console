@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block page_header %}Instance List{% endblock %}
+{% block main %}
+<div>
+    <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+        <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr role="row">
+                    <th>Id</th>
+                    <th>Host</th>
+                    <th>Port</th>
+                    <th>Status</th>
+                    <th>Last Ack</th>
+                    <th>Create Date</th>
+                    <th>Update Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for instance in instances %}
+                <tr role="row" class="odd">
+                    <td>{{ instance.id }}</td>
+                    <td>{{ instance.host}}</td>
+                    <td>{{ instance.port}}</td>
+                    <td>
+                        {% if instance.status == 0 %} offline {% endif %}
+                        {% if instance.status == 1 %} online {% endif %}
+                        {% if instance.status == 2 %} timeout {% endif %}
+                    </td>
+                    <td>{{ instance.last_ack}}</td>
+                    <td>{{ instance.create_date }}</td>
+                    <td>{{ instance.update_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

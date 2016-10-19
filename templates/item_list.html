@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block page_header %}Item List{% endblock %}
+{% block main %}
+<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+    <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer">
+        <thead>
+            <tr role="row">
+                <th>Id</th>
+                <th>Name</th>
+                <th>On</th>
+                <th>Threshold</th>
+                <th>Create Date</th>
+                <th>Update Date</th>
+                <th>Operate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr role="row" class="odd">
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{% if item.on == 1 %} on {% else %} off {% endif %}</td>
+                <td>{{ item.threshold }}</td>
+                <td>{{ item.create_date }}</td>
+                <td>{{ item.update_date }}</td>
+                <td>
+                    <a href="/item/update/{{ item.id }}"><span class="label label-sm label-success">Update</span></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="dataTables_info" id="dynamic-table_info">
+                Showing {{ pages.start }} to {{ pages.end }} of {{ pages.total }} entries.
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
+                <ul class="pagination">
+                    <li class="paginate_button previous {% if not pages.page > 1 %}disabled{% endif %}" id="dynamic-table_previous">
+                        <a href="{% if pages.page > 1%}/item/list/{{ app.id }}-{{ pages.page-1 }}{% endif %}">Previous</a>
+                    </li>
+                    <li class="paginate_button next {% if not pages.page < pages.page_max %}disabled{% endif %}" id="dynamic-table_next">
+                        <a href="{% if pages.page < pages.page_max %}/item/list/{{ app.id }}-{{ pages.page+1 }}{% endif %}">Next</a>
+                    </li>
+                </ul>
+
+                <ul class="pagination">
+                    <li class="paginate_button previous" id="dynamic-table_previous">
+                        <a href="/item/add/{{ app.id }}" class="btn btn-info">Add Item</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
