@@ -1,0 +1,2 @@
+# eswitch-console
+eswitch console
